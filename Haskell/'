@@ -1,0 +1,28 @@
+module Evaluator where
+
+
+import Parser
+
+unpackInt' :: Expr -> Int
+unpackInt' (LNum a) = a
+
+intChecker :: [Expr] -> Bool
+intChecker [] = True
+intChecker (LNum a: xs) = intChecker xs
+intChecker _ = False
+
+evalList :: [Expr] -> Expr
+evalList (LAtom "+" : xs) = LNum (sum $ map unpackInt' xs)
+
+eval :: Expr -> Expr
+eval (LNum a)  = LNum a
+eval (LString a) = LString a
+eval (LBool a) = LBool a
+eval (LAtom a) = LAtom a
+eval (List [LAtom "quote", val]) = val
+eval (List [LAtom "+" : xs]) = evalList xs
+
+
+
+
+

@@ -1,0 +1,9 @@
+
+
+
+HIGHEST PRIORITY:
+    - Function environment does not contain the function itself, making
+      recursion impossible
+
+Bugs:
+
